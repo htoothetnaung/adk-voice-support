@@ -1962,4 +1962,15 @@ Planned changes:
 
 Status:
 
-- In progress before the first milestone commit and push.
+- Completed and pushed in commit `ea58809`.
+
+### 2026-05-04 - Milestone 2: Python Foundation
+
+Planned changes:
+
+- Add `pyproject.toml`, package directories, config loader, mock data, deterministic mock tools, and tracked `.gitkeep` placeholders for runtime output directories.
+- Keep the implementation text-only and API-free.
+
+Status:
+
+- In progress before the second milestone commit and push.
