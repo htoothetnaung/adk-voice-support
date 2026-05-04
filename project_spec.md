@@ -1999,3 +1999,17 @@ Completed changes:
 Validation:
 
 - `python -m pytest` passed 20 tests.
+
+### 2026-05-04 - Milestone 5: Text Evaluation Lab
+
+Completed changes:
+
+- Added text evaluation scenarios, metrics, and `python -m evals.run_eval`.
+- Added JSON report generation under `evals/reports/`.
+- Added tests for evaluation metrics and scenario execution.
+- Tightened policy search so topic matches outrank common-word matches.
+
+Validation:
+
+- `python -m pytest` passed 27 tests.
+- `python -m evals.run_eval` passed 12/12 scenarios.

@@ -1,0 +1,123 @@
+[
+  {
+    "id": "billing_duplicate_charge_001",
+    "user_message": "I was charged twice this month. My email is alice@example.com.",
+    "expected_intent": "refund_request",
+    "expected_agent": "billing_agent",
+    "expected_tools": ["lookup_customer", "lookup_invoice", "check_refund_eligibility", "create_refund_ticket"],
+    "must_include": ["duplicate", "refund", "ticket"],
+    "must_not_include": ["guaranteed", "definitely refunded"],
+    "max_latency_ms": 8000
+  },
+  {
+    "id": "billing_old_invoice_002",
+    "user_message": "Can I get a refund for invoice inv_1002? My customer ID is cust_002.",
+    "expected_intent": "refund_request",
+    "expected_agent": "billing_agent",
+    "expected_tools": ["lookup_customer", "lookup_invoice", "check_refund_eligibility", "create_support_ticket"],
+    "must_include": ["not automatically refund eligible", "ticket"],
+    "must_not_include": ["guaranteed"],
+    "max_latency_ms": 8000
+  },
+  {
+    "id": "billing_missing_customer_003",
+    "user_message": "My invoice amount is wrong.",
+    "expected_intent": "billing_issue",
+    "expected_agent": "billing_agent",
+    "expected_tools": ["lookup_customer", "lookup_invoice"],
+    "must_include": ["customer ID", "account email"],
+    "must_not_include": ["refund ticket"],
+    "max_latency_ms": 8000
+  },
+  {
+    "id": "technical_login_001",
+    "user_message": "I cannot log in to my account.",
+    "expected_intent": "technical_issue",
+    "expected_agent": "technical_support_agent",
+    "expected_tools": ["lookup_customer", "get_known_issues", "run_basic_diagnostic", "create_support_ticket"],
+    "must_include": ["diagnostic", "ticket"],
+    "must_not_include": ["refund"],
+    "max_latency_ms": 8000
+  },
+  {
+    "id": "technical_app_crash_002",
+    "user_message": "The mobile app keeps crashing when I open it.",
+    "expected_intent": "technical_issue",
+    "expected_agent": "technical_support_agent",
+    "expected_tools": ["lookup_customer", "get_known_issues", "run_basic_diagnostic", "create_support_ticket"],
+    "must_include": ["mobile_app", "ticket"],
+    "must_not_include": ["invoice"],
+    "max_latency_ms": 8000
+  },
+  {
+    "id": "technical_integration_003",
+    "user_message": "My webhook integration is not working.",
+    "expected_intent": "technical_issue",
+    "expected_agent": "technical_support_agent",
+    "expected_tools": ["lookup_customer", "get_known_issues", "run_basic_diagnostic", "create_support_ticket"],
+    "must_include": ["integration", "ticket"],
+    "must_not_include": ["refund"],
+    "max_latency_ms": 8000
+  },
+  {
+    "id": "policy_cancellation_001",
+    "user_message": "What is your cancellation policy?",
+    "expected_intent": "policy_question",
+    "expected_agent": "policy_agent",
+    "expected_tools": ["search_policy_knowledge_base"],
+    "must_include": ["cancel anytime"],
+    "must_not_include": ["I think"],
+    "max_latency_ms": 8000
+  },
+  {
+    "id": "policy_privacy_002",
+    "user_message": "Do you store my private data?",
+    "expected_intent": "policy_question",
+    "expected_agent": "policy_agent",
+    "expected_tools": ["search_policy_knowledge_base"],
+    "must_include": ["necessary account", "support and billing"],
+    "must_not_include": ["sell your data"],
+    "max_latency_ms": 8000
+  },
+  {
+    "id": "policy_warranty_003",
+    "user_message": "How long is the warranty?",
+    "expected_intent": "policy_question",
+    "expected_agent": "policy_agent",
+    "expected_tools": ["search_policy_knowledge_base"],
+    "must_include": ["one-year"],
+    "must_not_include": ["lifetime"],
+    "max_latency_ms": 8000
+  },
+  {
+    "id": "escalation_human_001",
+    "user_message": "I want to talk to a human.",
+    "expected_intent": "human_escalation",
+    "expected_agent": "human_escalation_agent",
+    "expected_tools": ["summarize_conversation_for_human", "create_escalation_ticket"],
+    "must_include": ["escalation ticket", "human"],
+    "must_not_include": ["cannot help"],
+    "max_latency_ms": 8000
+  },
+  {
+    "id": "escalation_angry_002",
+    "user_message": "This is unacceptable. I want to file a complaint.",
+    "expected_intent": "human_escalation",
+    "expected_agent": "human_escalation_agent",
+    "expected_tools": ["summarize_conversation_for_human", "create_escalation_ticket"],
+    "must_include": ["escalation ticket"],
+    "must_not_include": ["calm down"],
+    "max_latency_ms": 8000
+  },
+  {
+    "id": "unknown_clarify_001",
+    "user_message": "Can you help me with something?",
+    "expected_intent": "unknown",
+    "expected_agent": "support_triage_agent",
+    "expected_tools": [],
+    "must_include": ["billing", "technical", "policy"],
+    "must_not_include": ["ticket"],
+    "max_latency_ms": 8000
+  }
+]
+

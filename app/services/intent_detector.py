@@ -24,7 +24,7 @@ class IntentDetector:
         "refund_request": r"\b(refund|money back|reimburse|charged twice|duplicate charge)\b",
         "billing_issue": r"\b(billing|invoice|charged|charge|payment|subscription|cancel subscription|paid)\b",
         "technical_issue": r"\b(login|log in|otp|crash|crashing|error|bug|integration|webhook|not working|app)\b",
-        "policy_question": r"\b(policy|privacy|terms|warranty|cancel anytime|cancellation|data)\b",
+        "policy_question": r"\b(policy|privacy|terms|warranty|cancel anytime|cancellation|data|store)\b",
         "order_status": r"\b(order|shipment|shipping|delivery|tracking)\b",
         "account_issue": r"\b(account|profile|email|password|locked)\b",
     }
@@ -47,4 +47,3 @@ class IntentDetector:
                 return {"intent": intent, "confidence": 0.9, "method": "keyword", "raw_text": text}
 
         return {"intent": "unknown", "confidence": 0.25, "method": "keyword", "raw_text": text}
-
