@@ -1,0 +1,122 @@
+[
+  {
+    "id": "voice_billing_duplicate_001",
+    "transcript": "Um, I think I was charged twice this month. My email is alice@example.com.",
+    "expected_intent": "refund_request",
+    "expected_agent": "billing_agent",
+    "expected_tools": ["lookup_customer", "lookup_invoice", "check_refund_eligibility"],
+    "simulate_interrupt": false,
+    "approach_a_live_api": {"max_latency_ms": 1500, "max_interrupt_latency_ms": 300},
+    "approach_b_pipeline": {"max_latency_ms": 4000, "max_interrupt_latency_ms": 800},
+    "must_include": ["duplicate", "refund"],
+    "must_not_include": ["guaranteed"]
+  },
+  {
+    "id": "voice_billing_refund_002",
+    "transcript": "Can I get a refund for invoice inv_1002, customer cust_002?",
+    "expected_intent": "refund_request",
+    "expected_agent": "billing_agent",
+    "expected_tools": ["lookup_customer", "lookup_invoice", "check_refund_eligibility"],
+    "simulate_interrupt": false,
+    "approach_a_live_api": {"max_latency_ms": 1500, "max_interrupt_latency_ms": 300},
+    "approach_b_pipeline": {"max_latency_ms": 4000, "max_interrupt_latency_ms": 800},
+    "must_include": ["not automatically refund eligible", "ticket"],
+    "must_not_include": ["guaranteed"]
+  },
+  {
+    "id": "voice_billing_invoice_003",
+    "transcript": "My invoice amount looks wrong.",
+    "expected_intent": "billing_issue",
+    "expected_agent": "billing_agent",
+    "expected_tools": ["lookup_customer", "lookup_invoice"],
+    "simulate_interrupt": false,
+    "approach_a_live_api": {"max_latency_ms": 1500, "max_interrupt_latency_ms": 300},
+    "approach_b_pipeline": {"max_latency_ms": 4000, "max_interrupt_latency_ms": 800},
+    "must_include": ["customer ID", "account email"],
+    "must_not_include": ["guaranteed"]
+  },
+  {
+    "id": "voice_tech_login_001",
+    "transcript": "Uh I cannot log in to my account.",
+    "expected_intent": "technical_issue",
+    "expected_agent": "technical_support_agent",
+    "expected_tools": ["get_known_issues", "run_basic_diagnostic"],
+    "simulate_interrupt": false,
+    "approach_a_live_api": {"max_latency_ms": 1500, "max_interrupt_latency_ms": 300},
+    "approach_b_pipeline": {"max_latency_ms": 4000, "max_interrupt_latency_ms": 800},
+    "must_include": ["diagnostic", "ticket"],
+    "must_not_include": ["refund"]
+  },
+  {
+    "id": "voice_tech_app_002",
+    "transcript": "The app keeps crashing when I open it.",
+    "expected_intent": "technical_issue",
+    "expected_agent": "technical_support_agent",
+    "expected_tools": ["get_known_issues", "run_basic_diagnostic"],
+    "simulate_interrupt": true,
+    "approach_a_live_api": {"max_latency_ms": 1500, "max_interrupt_latency_ms": 300},
+    "approach_b_pipeline": {"max_latency_ms": 4000, "max_interrupt_latency_ms": 800},
+    "must_include": ["diagnostic", "ticket"],
+    "must_not_include": ["refund"]
+  },
+  {
+    "id": "voice_tech_integration_003",
+    "transcript": "My webhook integration is not working.",
+    "expected_intent": "technical_issue",
+    "expected_agent": "technical_support_agent",
+    "expected_tools": ["get_known_issues", "run_basic_diagnostic"],
+    "simulate_interrupt": false,
+    "approach_a_live_api": {"max_latency_ms": 1500, "max_interrupt_latency_ms": 300},
+    "approach_b_pipeline": {"max_latency_ms": 4000, "max_interrupt_latency_ms": 800},
+    "must_include": ["integration", "ticket"],
+    "must_not_include": ["refund"]
+  },
+  {
+    "id": "voice_policy_refund_001",
+    "transcript": "What's your policy on refunds?",
+    "expected_intent": "policy_question",
+    "expected_agent": "policy_agent",
+    "expected_tools": ["search_policy_knowledge_base"],
+    "simulate_interrupt": false,
+    "approach_a_live_api": {"max_latency_ms": 1500, "max_interrupt_latency_ms": 300},
+    "approach_b_pipeline": {"max_latency_ms": 4000, "max_interrupt_latency_ms": 800},
+    "must_include": ["14 days"],
+    "must_not_include": ["guaranteed"]
+  },
+  {
+    "id": "voice_policy_privacy_002",
+    "transcript": "Do you store my data?",
+    "expected_intent": "policy_question",
+    "expected_agent": "policy_agent",
+    "expected_tools": ["search_policy_knowledge_base"],
+    "simulate_interrupt": false,
+    "approach_a_live_api": {"max_latency_ms": 1500, "max_interrupt_latency_ms": 300},
+    "approach_b_pipeline": {"max_latency_ms": 4000, "max_interrupt_latency_ms": 800},
+    "must_include": ["necessary account"],
+    "must_not_include": ["sell"]
+  },
+  {
+    "id": "voice_escalation_001",
+    "transcript": "I need a person right now.",
+    "expected_intent": "human_escalation",
+    "expected_agent": "human_escalation_agent",
+    "expected_tools": ["create_escalation_ticket"],
+    "simulate_interrupt": true,
+    "approach_a_live_api": {"max_latency_ms": 1500, "max_interrupt_latency_ms": 300},
+    "approach_b_pipeline": {"max_latency_ms": 4000, "max_interrupt_latency_ms": 800},
+    "must_include": ["escalation ticket"],
+    "must_not_include": ["cannot help"]
+  },
+  {
+    "id": "voice_escalation_002",
+    "transcript": "This is unacceptable, I want to file a complaint.",
+    "expected_intent": "human_escalation",
+    "expected_agent": "human_escalation_agent",
+    "expected_tools": ["create_escalation_ticket"],
+    "simulate_interrupt": false,
+    "approach_a_live_api": {"max_latency_ms": 1500, "max_interrupt_latency_ms": 300},
+    "approach_b_pipeline": {"max_latency_ms": 4000, "max_interrupt_latency_ms": 800},
+    "must_include": ["escalation ticket"],
+    "must_not_include": ["calm down"]
+  }
+]

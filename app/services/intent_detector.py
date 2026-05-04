@@ -21,10 +21,10 @@ class IntentDetector:
 
     _PATTERNS = {
         "human_escalation": r"\b(human|person|agent|manager|supervisor|complaint|unacceptable|legal|lawyer)\b",
+        "policy_question": r"\b(policy|privacy|terms|warranty|cancel anytime|cancellation|data|store)\b",
         "refund_request": r"\b(refund|money back|reimburse|charged twice|duplicate charge)\b",
         "billing_issue": r"\b(billing|invoice|charged|charge|payment|subscription|cancel subscription|paid)\b",
         "technical_issue": r"\b(login|log in|otp|crash|crashing|error|bug|integration|webhook|not working|app)\b",
-        "policy_question": r"\b(policy|privacy|terms|warranty|cancel anytime|cancellation|data|store)\b",
         "order_status": r"\b(order|shipment|shipping|delivery|tracking)\b",
         "account_issue": r"\b(account|profile|email|password|locked)\b",
     }
