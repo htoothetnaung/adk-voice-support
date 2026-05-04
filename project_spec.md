@@ -1986,3 +1986,16 @@ Planned changes:
 Status:
 
 - Completed with `python -m pytest` passing 15 tests.
+
+### 2026-05-04 - Milestone 4: ADK Agents, CLI, and Text Runner
+
+Completed changes:
+
+- Added ADK-compatible root and specialist agent definitions for ADK Web discovery.
+- Added deterministic `SupportAgentRunner` for local CLI, tests, and evals without API calls.
+- Added intent detection, structured response objects, JSON trace logging, and interactive `python -m app.cli` text mode.
+- Added tests for root agent discovery and routing behavior.
+
+Validation:
+
+- `python -m pytest` passed 20 tests.
