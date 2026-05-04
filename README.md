@@ -67,6 +67,17 @@ Modes:
 - `[2]` Gemini Live API simulation using typed transcripts
 - `[3]` TTS/STT pipeline simulation using typed transcripts
 
+## Run Gradio UI
+
+```powershell
+uv sync --extra dev --extra ui
+uv run python -m app.ui.gradio_app
+```
+
+Then open the local URL Gradio prints, usually `http://127.0.0.1:7860`.
+
+The mic toggle uses browser speech recognition for live transcript capture when your browser supports it. Chrome or Edge on localhost is recommended. Typed input stays available as a fallback.
+
 ## Run Evaluation
 
 ```powershell

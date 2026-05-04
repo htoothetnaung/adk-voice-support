@@ -2063,3 +2063,21 @@ Validation:
 - `.venv\Scripts\python.exe -m evals.run_eval` passed 12/12 scenarios.
 - `.venv\Scripts\python.exe -m evals.run_eval_voice --approach both --compare` passed 10/10 Live API simulation and 10/10 pipeline simulation scenarios.
 - `uv run python -m pytest` passed 38 tests.
+
+### 2026-05-04 - Milestone 9: Gradio Support Console
+
+Completed changes:
+
+- Replaced the minimal Gradio placeholder with a clean support-console UI.
+- Added text chat, mode selection, mic on/off toggle, browser speech-recognition transcript capture, editable live transcript, human/agent transcript timeline, and last-turn metadata.
+- Added a `ui` optional dependency group for Gradio and updated README run commands.
+- Added backend UI tests for turn handling and transcript state.
+
+Validation:
+
+- `uv run --extra ui python -c "from app.ui.gradio_app import create_demo; demo = create_demo(); print(type(demo).__name__)"` built the Gradio app successfully.
+- `uv run --extra ui python -m pytest` passed 41 tests.
+
+Current limitation:
+
+- The mic toggle uses browser speech recognition when supported by the browser. It does not yet stream real provider STT audio through Deepgram or Gemini.
