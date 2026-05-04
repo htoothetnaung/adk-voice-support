@@ -2032,3 +2032,17 @@ Validation:
 Current limitation:
 
 - Voice modes are transcript-driven simulations by default. Real microphone/audio streaming and provider calls require API keys, provider packages, and the next integration hardening pass.
+
+### 2026-05-04 - Milestone 7: Documentation and Optional UI Entrypoints
+
+Completed changes:
+
+- Updated README with runnable commands and current feature status.
+- Added architecture, evaluation, voice architecture, and OpenAI Agents SDK mirror docs.
+- Added optional Streamlit and Gradio entrypoints with dependency guards.
+
+Validation:
+
+- `python -m pytest` passed 38 tests.
+- `python -m evals.run_eval` passed 12/12 scenarios.
+- `python -m evals.run_eval_voice --approach both --compare` passed 10/10 Live API simulation and 10/10 pipeline simulation scenarios.

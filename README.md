@@ -2,20 +2,25 @@
 
 ADK-first multi-agent customer support simulator and evaluation lab.
 
-This repository is starting with a deterministic Python foundation: mock data, mock business tools, and tests. Google ADK agents, CLI routing, evaluation runs, voice support, and the later OpenAI Agents SDK mirror will be added in later milestones.
+This repository contains a runnable ADK-first customer support simulator with deterministic local execution, mock tools, text evaluation, transcript-driven voice simulation, and voice evaluation.
 
 ## Current Phase
 
-Phase 1: repository hygiene, Python package structure, configuration, mock tools, and tests.
+Implemented:
 
 Implemented in this phase:
 
 - Safe `.gitignore` and `.dockerignore`
 - `.env.example` with placeholder values only
 - Environment-driven config loader
+- ADK-compatible root and specialist agent definitions
+- Deterministic local runner for CLI, tests, and evals
 - Mock customer, invoice, policy, and known-issue data
-- Deterministic mock tools for billing, technical support, policy lookup, and escalation
-- Focused pytest coverage for the tool layer
+- Mock tools for billing, technical support, policy lookup, and escalation
+- Text evaluation runner and JSON reports
+- Transcript-driven Gemini Live API and TTS/STT pipeline simulations
+- Voice evaluation runner and JSON reports
+- Focused pytest coverage
 
 ## Planned Architecture
 
@@ -44,6 +49,39 @@ python -m pytest
 ```
 
 The current tests do not call Google ADK, Gemini, Deepgram, ElevenLabs, or any other external service.
+
+## Run CLI
+
+```powershell
+python -m app.cli
+```
+
+Modes:
+
+- `[1]` Text mode
+- `[2]` Gemini Live API simulation using typed transcripts
+- `[3]` TTS/STT pipeline simulation using typed transcripts
+
+## Run Evaluation
+
+```powershell
+python -m evals.run_eval
+python -m evals.run_eval_voice --approach both --compare
+```
+
+Reports are written under `evals/reports/` and are intentionally ignored by Git.
+
+## Run ADK Web
+
+The ADK root agent is exposed as `app.agents.root_agent.root_agent`. Use the installed ADK tooling for your environment and point it at this package/module.
+
+## Voice Layer
+
+The current voice layer is intentionally offline-safe:
+
+- Gemini Live API mode is represented by a session/client boundary plus transcript-driven simulation.
+- Pipeline mode is represented by STT, TTS, VAD, audio buffer, and interrupt boundaries plus transcript-driven simulation.
+- Real microphone streaming and provider calls require API keys and a follow-up provider integration pass.
 
 ## Roadmap
 
