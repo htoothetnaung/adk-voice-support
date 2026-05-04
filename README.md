@@ -78,6 +78,19 @@ Then open the local URL Gradio prints, usually `http://127.0.0.1:7860`.
 
 The mic toggle uses browser speech recognition for live transcript capture when your browser supports it. Chrome or Edge on localhost is recommended. Typed input stays available as a fallback.
 
+## Run Full Browser Demo
+
+```powershell
+uv sync --extra dev --extra ui
+uv run python -m app.demo_server
+```
+
+Open:
+
+[http://127.0.0.1:8000](http://127.0.0.1:8000)
+
+This page includes the full local demo loop: browser mic on/off, live speech transcript, editable transcript send, WebSocket event streaming, human/agent conversation, tool-call timeline, intent events, and streamed agent responses.
+
 ## Run Evaluation
 
 ```powershell

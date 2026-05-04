@@ -2101,3 +2101,20 @@ Validation:
 Current limitation:
 
 - The real production WebSocket endpoint is still the next step. The backend now has the ADK runtime primitives needed for that endpoint, but browser audio is not yet forwarded into `runner.run_live()`.
+
+### 2026-05-04 - Milestone 11: Full Local Browser Demo
+
+Completed changes:
+
+- Added `app.demo_server`, a runnable FastAPI browser demo with `GET /`, `GET /health`, `POST /api/chat`, and `WS /ws/{user_id}/{session_id}`.
+- Added browser mic on/off, live Web Speech transcription, editable transcript sending, WebSocket streaming events, human/agent transcript display, intent events, tool-call events, streamed agent response deltas, and turn-complete payloads.
+- Added tests for the index page, health check, HTTP chat, and full WebSocket event flow.
+- Made FastAPI and Uvicorn explicit project dependencies.
+
+Validation:
+
+- `uv run --extra ui python -m pytest` passed 50 tests.
+
+Current behavior:
+
+- The demo works locally now with the deterministic support runner and browser speech recognition. It does not require API keys.

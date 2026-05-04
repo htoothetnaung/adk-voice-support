@@ -31,3 +31,14 @@ The deterministic runner is the current execution path. The ADK agent objects pr
 - helpers for upstream text/audio and downstream event serialization
 
 The local simulator still uses `SupportAgentRunner` by default so tests, CLI, and UI remain offline-safe.
+
+## Browser Demo
+
+`app.demo_server` is the full local demo surface. It serves a browser UI and a WebSocket endpoint:
+
+- `GET /` browser support console
+- `GET /health` health check
+- `POST /api/chat` HTTP chat fallback
+- `WS /ws/{user_id}/{session_id}` live human, intent, tool, agent delta, agent transcript, and turn-complete events
+
+The endpoint is intentionally offline-safe and uses `SupportAgentRunner` today. The official ADK runtime layer is available for replacing the deterministic path with `runner.run_live()` when real provider credentials and browser audio forwarding are enabled.
