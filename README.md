@@ -34,18 +34,23 @@ Implemented in this phase:
 ## Setup
 
 ```powershell
-python -m venv .venv
+uv venv .venv --python C:\Users\austin\anaconda3\python.exe
+uv sync --extra dev
 .venv\Scripts\Activate.ps1
-python -m pip install --upgrade pip
-python -m pip install -e ".[dev]"
 ```
 
 Create a local `.env` from `.env.example` when real API-backed phases begin. Do not commit `.env`.
 
+If `.venv` already exists, use:
+
+```powershell
+uv sync --extra dev
+```
+
 ## Test
 
 ```powershell
-python -m pytest
+uv run python -m pytest
 ```
 
 The current tests do not call Google ADK, Gemini, Deepgram, ElevenLabs, or any other external service.
@@ -53,7 +58,7 @@ The current tests do not call Google ADK, Gemini, Deepgram, ElevenLabs, or any o
 ## Run CLI
 
 ```powershell
-python -m app.cli
+uv run python -m app.cli
 ```
 
 Modes:
@@ -65,11 +70,24 @@ Modes:
 ## Run Evaluation
 
 ```powershell
-python -m evals.run_eval
-python -m evals.run_eval_voice --approach both --compare
+uv run python -m evals.run_eval
+uv run python -m evals.run_eval_voice --approach both --compare
 ```
 
 Reports are written under `evals/reports/` and are intentionally ignored by Git.
+
+## Quick Start
+
+From a fresh clone on this machine:
+
+```powershell
+cd C:\Users\austin\Documents\Brillar_job\voice\adk_voice_support
+uv sync --extra dev
+uv run python -m pytest
+uv run python -m evals.run_eval
+uv run python -m evals.run_eval_voice --approach both --compare
+uv run python -m app.cli
+```
 
 ## Run ADK Web
 

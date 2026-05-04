@@ -2046,3 +2046,20 @@ Validation:
 - `python -m pytest` passed 38 tests.
 - `python -m evals.run_eval` passed 12/12 scenarios.
 - `python -m evals.run_eval_voice --approach both --compare` passed 10/10 Live API simulation and 10/10 pipeline simulation scenarios.
+
+### 2026-05-04 - Milestone 8: uv Environment Setup
+
+Completed changes:
+
+- Created repo-local `.venv` with `uv` using Python 3.13.9.
+- Installed project and dev dependencies into `.venv`.
+- Generated `uv.lock` for reproducible dependency resolution.
+- Updated README with uv setup, run, test, text eval, voice eval, and CLI commands.
+- Fixed setuptools package discovery to include only `app*` and `evals*`.
+
+Validation:
+
+- `.venv\Scripts\python.exe -m pytest` passed 38 tests.
+- `.venv\Scripts\python.exe -m evals.run_eval` passed 12/12 scenarios.
+- `.venv\Scripts\python.exe -m evals.run_eval_voice --approach both --compare` passed 10/10 Live API simulation and 10/10 pipeline simulation scenarios.
+- `uv run python -m pytest` passed 38 tests.
