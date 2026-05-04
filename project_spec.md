@@ -2118,3 +2118,19 @@ Validation:
 Current behavior:
 
 - The demo works locally now with the deterministic support runner and browser speech recognition. It does not require API keys.
+
+### 2026-05-04 - Milestone 12: ADK Web Compatibility
+
+Completed changes:
+
+- Added native ADK Web discovery layout under `adk_agents/voice_support`.
+- Added an offline-safe ADK custom `BaseAgent` that delegates to `SupportAgentRunner`.
+- The ADK Web agent emits function-call events, function-response events, and a final model response event so ADK Web can show transparent turn internals without requiring API keys.
+- Added tests for ADK Web agent event emission.
+- Updated README and architecture docs with the exact ADK Web command.
+
+Validation:
+
+- `uv run --extra ui python -m pytest` passed 51 tests.
+- ADK Web server smoke test returned HTTP 200 on `/`.
+- ADK Web `/list-apps` returned `["voice_support"]`.

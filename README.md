@@ -115,7 +115,17 @@ uv run python -m app.cli
 
 ## Run ADK Web
 
-The ADK root agent is exposed as `app.agents.root_agent.root_agent`. Use the installed ADK tooling for your environment and point it at this package/module.
+ADK Web is supported through the native ADK agents directory layout:
+
+```powershell
+uv run adk web --session_service_uri=memory:// --port 8001 adk_agents
+```
+
+Open:
+
+[http://127.0.0.1:8001](http://127.0.0.1:8001)
+
+Select the `voice_support` app. This ADK Web app uses `adk_agents/voice_support/agent.py`, an offline-safe ADK custom agent that emits tool-call, tool-response, and final-response events for transparency without requiring model API keys.
 
 ## ADK Streaming Alignment
 

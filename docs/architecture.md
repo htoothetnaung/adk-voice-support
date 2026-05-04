@@ -32,6 +32,18 @@ The deterministic runner is the current execution path. The ADK agent objects pr
 
 The local simulator still uses `SupportAgentRunner` by default so tests, CLI, and UI remain offline-safe.
 
+## ADK Web
+
+ADK Web compatibility lives in `adk_agents/voice_support/agent.py`.
+
+Run it with:
+
+```powershell
+uv run adk web --session_service_uri=memory:// --port 8001 adk_agents
+```
+
+This app uses a custom ADK `BaseAgent` so ADK Web works without external model credentials. It emits function-call events, function-response events, and the final model response event, all backed by the same deterministic support runner.
+
 ## Browser Demo
 
 `app.demo_server` is the full local demo surface. It serves a browser UI and a WebSocket endpoint:
