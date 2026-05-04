@@ -8,6 +8,15 @@ This repository is starting with a deterministic Python foundation: mock data, m
 
 Phase 1: repository hygiene, Python package structure, configuration, mock tools, and tests.
 
+Implemented in this phase:
+
+- Safe `.gitignore` and `.dockerignore`
+- `.env.example` with placeholder values only
+- Environment-driven config loader
+- Mock customer, invoice, policy, and known-issue data
+- Deterministic mock tools for billing, technical support, policy lookup, and escalation
+- Focused pytest coverage for the tool layer
+
 ## Planned Architecture
 
 - Root triage agent
@@ -34,6 +43,8 @@ Create a local `.env` from `.env.example` when real API-backed phases begin. Do 
 python -m pytest
 ```
 
+The current tests do not call Google ADK, Gemini, Deepgram, ElevenLabs, or any other external service.
+
 ## Roadmap
 
 1. Mock tools and tests
@@ -43,4 +54,3 @@ python -m pytest
 5. TTS/STT/LLM fallback pipeline
 6. Voice benchmarks
 7. OpenAI Agents SDK mirror
-

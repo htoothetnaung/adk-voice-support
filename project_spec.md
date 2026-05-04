@@ -1973,4 +1973,16 @@ Planned changes:
 
 Status:
 
-- In progress before the second milestone commit and push.
+- Completed and pushed in commit `ae3ce8a`.
+
+### 2026-05-04 - Milestone 3: Tool Tests and Docs
+
+Planned changes:
+
+- Add focused pytest coverage for every Phase 1 mock tool.
+- Update README usage notes for the current deterministic, API-free phase.
+- Run `python -m pytest` before the final Phase 1 commit and push.
+
+Status:
+
+- Completed with `python -m pytest` passing 15 tests.

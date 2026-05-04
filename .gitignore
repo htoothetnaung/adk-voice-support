@@ -15,6 +15,7 @@ __pycache__/
 *.py[cod]
 *.pyo
 .pytest_cache/
+pytest-cache-files-*/
 .mypy_cache/
 .ruff_cache/
 .coverage
@@ -50,4 +51,3 @@ audio_samples/
 .vscode/
 .DS_Store
 Thumbs.db
-
