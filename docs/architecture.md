@@ -20,3 +20,14 @@ Specialists:
 
 The deterministic runner is the current execution path. The ADK agent objects preserve the intended Google ADK architecture for later model-backed operation.
 
+## ADK Runtime Layer
+
+`app.services.adk_runtime.ADKRuntime` adds official ADK lifecycle boundaries:
+
+- reusable `Runner` and `InMemorySessionService`
+- get-or-create session handling
+- session-specific `RunConfig`
+- one fresh `LiveRequestQueue` per live streaming session
+- helpers for upstream text/audio and downstream event serialization
+
+The local simulator still uses `SupportAgentRunner` by default so tests, CLI, and UI remain offline-safe.

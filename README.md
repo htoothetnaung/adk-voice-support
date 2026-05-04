@@ -104,6 +104,20 @@ uv run python -m app.cli
 
 The ADK root agent is exposed as `app.agents.root_agent.root_agent`. Use the installed ADK tooling for your environment and point it at this package/module.
 
+## ADK Streaming Alignment
+
+The backend now includes an ADK runtime layer in `app.services.adk_runtime` that follows the official Gemini Live API Toolkit lifecycle:
+
+- reusable `Agent`, `InMemorySessionService`, and `Runner`
+- idempotent get-or-create sessions
+- per-session `RunConfig`
+- fresh `LiveRequestQueue` per streaming session
+- upstream text/audio helpers
+- downstream event serialization helpers
+- queue cleanup through `ADKLiveSession.close()`
+
+See `docs/adk_streaming_alignment.md` for the mapping and remaining production WebSocket work.
+
 ## Voice Layer
 
 The current voice layer is intentionally offline-safe:

@@ -2081,3 +2081,23 @@ Validation:
 Current limitation:
 
 - The mic toggle uses browser speech recognition when supported by the browser. It does not yet stream real provider STT audio through Deepgram or Gemini.
+
+### 2026-05-04 - Milestone 10: Official ADK Streaming Runtime Alignment
+
+Completed changes:
+
+- Checked the official ADK Gemini Live API Toolkit streaming guide and aligned the backend lifecycle with its key concepts.
+- Added `app.services.adk_runtime.ADKRuntime` for reusable `Runner`/`InMemorySessionService`, idempotent get-or-create sessions, per-session `RunConfig`, fresh `LiveRequestQueue` creation, upstream text/audio helpers, event serialization, and queue cleanup.
+- Added `LiveApiSession.prepare_adk_live_session()` so the voice layer can prepare real ADK streaming resources without disrupting offline simulation.
+- Added `docs/adk_streaming_alignment.md` and updated architecture/voice docs.
+- Added tests for session idempotency, BIDI run config defaults, fresh queue behavior, queue cleanup, upstream send helpers, and voice session preparation.
+
+Validation:
+
+- `uv run --extra ui python -m pytest` passed 46 tests.
+- `uv run python -m evals.run_eval` passed 12/12 scenarios.
+- `uv run python -m evals.run_eval_voice --approach both --compare` passed 10/10 Live API simulation and 10/10 pipeline simulation scenarios.
+
+Current limitation:
+
+- The real production WebSocket endpoint is still the next step. The backend now has the ADK runtime primitives needed for that endpoint, but browser audio is not yet forwarded into `runner.run_live()`.
